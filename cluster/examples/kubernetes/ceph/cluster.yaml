@@ -193,16 +193,16 @@ spec:
   # To control where various services will be scheduled by kubernetes, use the placement configuration sections below.
   # The example under 'all' would have all services scheduled on kubernetes nodes labeled with 'role=storage-node' and
   # tolerate taints with a key of 'storage-node'.
-#  placement:
-#    all:
-#      nodeAffinity:
-#        requiredDuringSchedulingIgnoredDuringExecution:
-#          nodeSelectorTerms:
-#          - matchExpressions:
-#            - key: role
-#              operator: In
-#              values:
-#              - storage-node
+  placement:
+    all:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: role
+              operator: In
+              values:
+              - storage-node
 #      podAffinity:
 #      podAntiAffinity:
 #      tolerations:
@@ -227,6 +227,8 @@ spec:
   storage: # cluster level storage configuration and selection
     useAllNodes: true
     useAllDevices: false
+    devices:
+      - name: "nvme2n1"
     deviceFilter:
     location:
     config:
