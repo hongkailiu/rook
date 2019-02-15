@@ -9,16 +9,16 @@ spec:
     failureDomain: host
     replicated:
       # Increase the replication size if you have more than one osd
-      size: 1
+      size: 3 
   # The pool spec used to create the data pool
   dataPool:
     failureDomain: osd
-    replicated:
-      size: 1
+    #replicated:
+    #  size: 1
     # If you have at least three osds, erasure coding can be specified
-    # erasureCoded:
-    #   dataChunks: 2
-    #   codingChunks: 1
+    erasureCoded:
+      dataChunks: 2
+      codingChunks: 1
   # The gaeteway service configuration
   gateway:
     # type of the gateway (s3)
@@ -26,7 +26,7 @@ spec:
     # A reference to the secret in the rook namespace where the ssl certificate is stored
     sslCertificateRef:
     # The port that RGW pods will listen on (http)
-    port: 80
+    port: 8080
     # The port that RGW pods will listen on (https). An ssl certificate is required.
     securePort:
     # The number of pods in the rgw deployment (ignored if allNodes=true)
